@@ -3,7 +3,7 @@
 var extend = require('../');
 var fs = require('fs');
 var es = require('event-stream');
-var	should = require('should');
+var should = require('should');
 var gutil = require('gulp-util');
 var path = require('path');
 require('mocha');
