@@ -1,0 +1,43 @@
+{
+  "name": "gulp-extend",
+  "version": "0.1.0",
+  "description": "A gulp plugin to extend (merge) json contents",
+  "keywords": [
+    "gulpplugin", "extend", "merge", "gulp"
+  ],
+  "homepage": "https://github.com/adamayres/gulp-extend",
+  "bugs": "https://github.com/adamayres/gulp-extend/issues",
+  "author": {
+    "name": "Adam Ayres",
+    "email": "magicaj@gmail.com",
+    "url": "https://github.com/adamayres"
+  },
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/adamayres/gulp-extend.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "event-stream": "*",
+    "node.extend": "~1.0.9",
+    "through": "~2.3.4",
+    "gulp-util": "~2.2.9"
+  },
+  "devDependencies": {
+    "mocha": "~1.14.0",
+    "should": "~2.1.0",
+    "gulp-util": "~2.2.0"
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.2.10"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ]
+}
