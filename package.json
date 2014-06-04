@@ -1,6 +1,6 @@
 {
   "name": "gulp-extend",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A gulp plugin to extend (merge) json contents",
   "keywords": [
     "gulpplugin", "extend", "merge", "gulp"
@@ -35,9 +35,7 @@
     "node": ">=0.8.0",
     "npm": ">=1.2.10"
   },
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ]
+  "licenses": [{
+    "type": "MIT"
+  }]
 }

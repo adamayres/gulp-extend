@@ -39,7 +39,7 @@ module.exports = function(fileName, deep) {
       jsonContent = JSON.parse(file.contents.toString('utf8'));
     } catch (e) {
       jsonContent = {};
-      console.log('[' + gutil.colors.red('gulp-extend') + '] File "' + file.base + '" has errors and was skipped!');
+      console.log('[' + gutil.colors.red('gulp-extend') + '] File "' + file.path + '" has errors and was skipped!');
     }
 
     buffer.push(jsonContent);
