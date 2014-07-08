@@ -36,7 +36,7 @@ gulp.src('./src/*.json')
 
 ## API
 
-### extend(fileName[,deep])
+### extend(fileName[, deep [, jsonSpace]])
 
 #### fileName
 Type: `String`
@@ -45,10 +45,18 @@ The output filename
 
 #### deep
 
-Type: `Boolean`
+Type: `Boolean`  
 Default: `true`
 
 If the extend should be deep.
+
+#### jsonSpace
+
+Type: `String` or `Number`  
+Default: `undefined`
+
+JSON.stringify's space attribute for pretty-printing the resulting JSON.  
+See [MDN docs on JSON.stringify()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) for more information.
 
 ## License
 

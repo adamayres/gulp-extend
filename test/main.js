@@ -133,4 +133,26 @@ describe('gulp-extend', function () {
       extend();
     }).should.throw('gulp-extend: Missing fileName parameter');
   });
+
+  it('should pass json space parameter', function () {
+    var src1 = new gutil.File({
+      contents: fs.readFileSync('test/fixtures/text1.json')
+    });
+
+    var src2 = new gutil.File({
+      contents: fs.readFileSync('test/fixtures/text2.json')
+    });
+
+    var extendStream = extend('result.json', true, 4);
+    extendStream.pipe(es.through(function(file) {
+      var result = file.contents.toString(),
+        expected = fs.readFileSync('test/expected/merged-with-spaces.json').toString();
+
+      result.should.equal(expected);
+    }));
+
+    extendStream.write(src1);
+    extendStream.write(src2);
+    extendStream.end();
+  });
 });
