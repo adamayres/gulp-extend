@@ -1,8 +1,8 @@
 {
+  "bah": "BYE",
+  "baz": false,
   "foo": {
     "bar": true,
     "other": "HELLO"
-  },
-  "baz": false,
-  "bah": "BYE"
+  }
 }
