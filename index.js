@@ -9,16 +9,20 @@ var File = gutil.File;
 
 var PLUGIN_NAME = 'gulp-extend';
 
-module.exports = function(fileName, deep, jsonSpace) {
+module.exports = function(fileName, options) {
   if (!fileName) {
     throw new PluginError(PLUGIN_NAME, PLUGIN_NAME + ': Missing fileName parameter');
   }
 
+  options = Object.assign({
+    deep: true,
+    jsonSpace: 2
+  }, options);
+
   var buffer = [];
   var firstFile = null;
 
-  deep = (deep !== undefined) ? deep : true;
-  buffer.push(deep); // first argument
+  buffer.push(options.deep); // first argument
 
   function bufferContents(file) {
     if (file.isNull()) {
@@ -56,7 +60,7 @@ module.exports = function(fileName, deep, jsonSpace) {
       cwd: firstFile.cwd,
       base: firstFile.base,
       path: joinedPath,
-      contents: new Buffer(JSON.stringify(joinedContents, null, jsonSpace))
+      contents: new Buffer(JSON.stringify(joinedContents, null, options.jsonSpace))
     });
 
     this.emit('data', joinedFile);
