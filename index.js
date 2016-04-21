@@ -16,7 +16,8 @@ module.exports = function(fileName, options) {
 
   options = Object.assign({
     deep: true,
-    jsonSpace: 2
+    jsonSpace: 2,
+    strict: false
   }, options);
 
   var buffer = [];
@@ -43,7 +44,9 @@ module.exports = function(fileName, options) {
       jsonContent = JSON.parse(file.contents.toString('utf8'));
     } catch (e) {
       jsonContent = {};
-      console.log('[' + gutil.colors.red('gulp-extend') + '] File "' + file.path + '" has errors and was skipped!');
+      var message = '[' + gutil.colors.red('gulp-extend') + '] File "' + file.path + '" has errors and was skipped!';
+      if (options.strict) throw new Error(message);
+      else console.log(message);
     }
 
     buffer.push(jsonContent);
