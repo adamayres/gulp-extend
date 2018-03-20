@@ -3,9 +3,9 @@
 var extend = require('node.extend');
 var through = require('through');
 var path = require('path');
-var gutil = require('gulp-util');
-var PluginError = gutil.PluginError;
-var File = gutil.File;
+var colors = require('ansi-colors');
+var PluginError = require('plugin-error');
+var File = require('vinyl');
 
 var PLUGIN_NAME = 'gulp-extend';
 
@@ -39,7 +39,7 @@ module.exports = function(fileName, deep, jsonSpace) {
       jsonContent = JSON.parse(file.contents.toString('utf8'));
     } catch (e) {
       jsonContent = {};
-      console.log('[' + gutil.colors.red('gulp-extend') + '] File "' + file.path + '" has errors and was skipped!');
+      console.log('[' + colors.red('gulp-extend') + '] File "' + file.path + '" has errors and was skipped!');
     }
 
     buffer.push(jsonContent);

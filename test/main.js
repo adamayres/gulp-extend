@@ -4,13 +4,13 @@ var extend = require('../');
 var fs = require('fs');
 var es = require('event-stream');
 var should = require('should');
-var gutil = require('gulp-util');
+var File = require('vinyl');
 var path = require('path');
 require('mocha');
 
 describe('gulp-extend', function () {
 
-  var expectedFile = new gutil.File({
+  var expectedFile = new File({
     path: 'test/expected/text1.json',
     cwd: 'test/',
     base: 'test/expected',
@@ -19,14 +19,14 @@ describe('gulp-extend', function () {
 
   it('should extend file contents via buffer', function (done) {
 
-    var srcFile1 = new gutil.File({
+    var srcFile1 = new File({
       path: 'test/fixtures/text1.json',
       cwd: 'test/',
       base: 'test/fixtures',
       contents: fs.readFileSync('test/fixtures/text1.json')
     });
 
-    var srcFile2 = new gutil.File({
+    var srcFile2 = new File({
       path: 'test/fixtures/text1.json',
       cwd: 'test/',
       base: 'test/fixtures',
@@ -61,14 +61,14 @@ describe('gulp-extend', function () {
 
   it('should allow a shallow extend of file contents via buffer', function (done) {
 
-    var srcFile1 = new gutil.File({
+    var srcFile1 = new File({
       path: 'test/fixtures/text1.json',
       cwd: 'test/',
       base: 'test/fixtures',
       contents: fs.readFileSync('test/fixtures/text1.json')
     });
 
-    var srcFile2 = new gutil.File({
+    var srcFile2 = new File({
       path: 'test/fixtures/text1.json',
       cwd: 'test/',
       base: 'test/fixtures',
@@ -103,7 +103,7 @@ describe('gulp-extend', function () {
 
   it('should error on stream', function (done) {
 
-    var srcFile = new gutil.File({
+    var srcFile = new File({
       path: 'test/fixtures/text1.json',
       cwd: 'test/',
       base: 'test/fixtures',
@@ -135,11 +135,11 @@ describe('gulp-extend', function () {
   });
 
   it('should pass json space parameter', function () {
-    var src1 = new gutil.File({
+    var src1 = new File({
       contents: fs.readFileSync('test/fixtures/text1.json')
     });
 
-    var src2 = new gutil.File({
+    var src2 = new File({
       contents: fs.readFileSync('test/fixtures/text2.json')
     });
 
