@@ -49,7 +49,7 @@ describe('gulp-extend', function () {
       newFilePath.should.equal(expectedFilePath);
 
       newFile.relative.should.equal('output.json');
-      String(newFile.contents).should.equal('{"foo":{"bar":true,"other":"HELLO"},"baz":false,"bah":"BYE"}');
+      String(newFile.contents).should.equal('{"bah":"BYE","baz":false,"foo":{"bar":true,"other":"HELLO"}}');
       Buffer.isBuffer(newFile.contents).should.equal(true);
       done();
     });
@@ -91,7 +91,7 @@ describe('gulp-extend', function () {
       newFilePath.should.equal(expectedFilePath);
 
       newFile.relative.should.equal('output.json');
-      String(newFile.contents).should.equal('{"foo":{"other":"HELLO"},"baz":false,"bah":"BYE"}');
+      String(newFile.contents).should.equal('{"bah":"BYE","baz":false,"foo":{"other":"HELLO"}}');
       Buffer.isBuffer(newFile.contents).should.equal(true);
       done();
     });

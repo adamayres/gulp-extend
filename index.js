@@ -50,7 +50,7 @@ module.exports = function(fileName, deep, jsonSpace) {
       return this.emit('end');
     }
 
-    var joinedContents = extend.apply(this, buffer);
+    var joinedContents = sort(extend.apply(this, buffer));
     var joinedPath = path.join(firstFile.base, fileName);
     var joinedFile = new File({
       cwd: firstFile.cwd,
@@ -63,5 +63,12 @@ module.exports = function(fileName, deep, jsonSpace) {
     this.emit('end');
   }
 
+  function sort(object) {
+    return Object.keys(object).sort().reduce(function (result, key) {
+      result[key] = object[key];
+      return result;
+    }, {});
+  }
+  
   return through(bufferContents, endStream);
 };
