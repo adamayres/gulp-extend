@@ -9,16 +9,21 @@ var File = gutil.File;
 
 var PLUGIN_NAME = 'gulp-extend';
 
-module.exports = function(fileName, deep, jsonSpace) {
+module.exports = function(fileName, options) {
   if (!fileName) {
     throw new PluginError(PLUGIN_NAME, PLUGIN_NAME + ': Missing fileName parameter');
   }
 
+  options = Object.assign({
+    deep: true,
+    jsonSpace: 2,
+    strict: false
+  }, options);
+
   var buffer = [];
   var firstFile = null;
 
-  deep = (deep !== undefined) ? deep : true;
-  buffer.push(deep); // first argument
+  buffer.push(options.deep); // first argument
 
   function bufferContents(file) {
     if (file.isNull()) {
@@ -39,7 +44,9 @@ module.exports = function(fileName, deep, jsonSpace) {
       jsonContent = JSON.parse(file.contents.toString('utf8'));
     } catch (e) {
       jsonContent = {};
-      console.log('[' + gutil.colors.red('gulp-extend') + '] File "' + file.path + '" has errors and was skipped!');
+      var message = '[' + gutil.colors.red('gulp-extend') + '] File "' + file.path + '" has errors and was skipped!';
+      if (options.strict) throw new Error(message);
+      else console.log(message);
     }
 
     buffer.push(jsonContent);
@@ -56,7 +63,7 @@ module.exports = function(fileName, deep, jsonSpace) {
       cwd: firstFile.cwd,
       base: firstFile.base,
       path: joinedPath,
-      contents: new Buffer(JSON.stringify(joinedContents, null, jsonSpace))
+      contents: new Buffer(JSON.stringify(joinedContents, null, options.jsonSpace))
     });
 
     this.emit('data', joinedFile);
